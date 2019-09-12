@@ -13,8 +13,6 @@ class Search extends Component {
         error: ""
     };
 
-
-
     searchBooks = query => {
         API.search(query)
             .then(res => this.setState({ result: res.items }))
