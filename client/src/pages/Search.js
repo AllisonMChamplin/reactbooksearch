@@ -31,10 +31,9 @@ class Search extends Component {
         console.log("FIX ME");
         API.search(this.state.search)
             .then(res => {
-                if (res.items.status === "error") {
-                    throw new Error(res.items.message);
-                }
-                this.setState({ results: res.items.message, error: "" });
+                console.log("hi");
+                console.log("res.data.items", res.data.items);
+                this.setState({ results: res.data.items, error: "" });
             })
             .catch(err => this.setState({ error: err.message }));
     };
