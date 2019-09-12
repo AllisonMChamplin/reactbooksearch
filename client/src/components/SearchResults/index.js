@@ -8,17 +8,25 @@ function SearchResults(props) {
 
   // If results.length > 0
   if (resultCount) {
+    console.log("props.results", props.results);
     resultMessage = "You have " + props.results.length + " results.";
     resultDisplay = props.results.map(result => (
       <li key={result.id} className="list-group-item">
-        <img alt="Book Cover Thumbnail Image" src={result.volumeInfo.imageLinks.smallThumbnail} className="img-fluid" />
+        <h4>{result.volumeInfo.title}</h4>
+        <h5>{result.volumeInfo.subtitle}</h5>
+        <h6>By {result.volumeInfo.authors}</h6>
+        {result.volumeInfo.imageLinks.thumbnail ? (
+          <div className="clearfix">
+            <img className="img-fluid rounded float-left" alt="Responsive image" src={result.volumeInfo.imageLinks.thumbnail} />
+            {result.volumeInfo.description}
+            <a href={result.selfLink} target='_blank'>SelfLink</a>
+          </div>
+        ) : (
+            <h5>bye</h5>
+          )}
       </li>
     ));
-
-  } 
-  // else {
-  //   resultMessage = ""
-  // }
+  }
 
   return (
     <div>
