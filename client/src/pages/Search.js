@@ -8,9 +8,17 @@ import SearchResults from "../components/SearchResults";
 class Search extends Component {
     state = {
         search: "",
-        breeds: [],
+        books: [],
         results: [],
         error: ""
+    };
+
+
+
+    searchBooks = query => {
+        API.search(query)
+            .then(res => this.setState({ result: res.data }))
+            .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
@@ -19,7 +27,15 @@ class Search extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("Clickhy HI");
+        console.log("Clicky", this.state.search);
+        API.search(this.state.search)
+            .then(res => {
+                if (res.data.status === "error") {
+                    throw new Error(res.data.message);
+                }
+                this.setState({ results: res.data.message, error: "" });
+            })
+            .catch(err => this.setState({ error: err.message }));
     };
 
     render() {
@@ -36,9 +52,9 @@ class Search extends Component {
                 <Row>
                     <Col size="md-12">
                         <SearchForm
-                            handleFormSubmit={this.handleFormSubmit}
                             handleInputChange={this.handleInputChange}
-                            breeds={this.state.breeds}
+                            books={this.state.books}
+                            handleFormSubmit={this.handleFormSubmit}
                         />
                         <SearchResults results={this.state.results} />
                     </Col>
