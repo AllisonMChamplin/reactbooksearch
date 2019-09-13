@@ -23,10 +23,17 @@ class Search extends Component {
         this.setState({ search: event.target.value });
     };
 
+    handleSaveSubmit = event => {
+        console.log("Clicky handleSaveSubmit");
+    }
+
+    handleViewSubmit = event => {
+        console.log("Clicky handleViewSubmit");
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("Clicky", this.state.search);
-        console.log("FIX ME");
+        console.log("Clicky handleFormSubmit", this.state.search);
         API.search(this.state.search)
             .then(res => {
                 console.log("hi");
