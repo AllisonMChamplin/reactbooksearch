@@ -12,8 +12,8 @@ function SearchResults(props) {
     resultMessage = "You have " + props.results.length + " results.";
     resultDisplay = props.results.map(result => (
       <li key={result.id} className="list-group-item">
-        <button type="submit" onClick={props.handleViewSubmit} class="btn btn-primary float-right">VIEW</button>
-        <button type="submit" onClick={props.handleSaveSubmit} class="btn btn-primary float-right">SAVE</button>
+        <button type="submit" name="view" value={result.id} onClick={props.handleViewSubmit} className="btn btn-primary float-right">VIEW</button>
+        <button type="submit" name="save" value={result.id} onClick={props.handleSaveSubmit} className="btn btn-primary float-right">SAVE</button>
         <h4>{result.volumeInfo.title}</h4>
         <h5>{result.volumeInfo.subtitle}</h5>
         <h6>By {result.volumeInfo.authors}</h6>

@@ -25,6 +25,12 @@ class Search extends Component {
 
     handleSaveSubmit = event => {
         console.log("Clicky handleSaveSubmit");
+        console.log("event: ", event);
+        // API.saveBook()
+        // .then(res => {
+        //     this.setState({ error: "" });
+        // })
+        // .catch(err => this.setState({ error: err.message }));
     }
 
     handleViewSubmit = event => {
@@ -58,7 +64,11 @@ class Search extends Component {
                                 books={this.state.books}
                                 handleFormSubmit={this.handleFormSubmit}
                             />
-                            <SearchResults results={this.state.results} />
+                            <SearchResults 
+                                results={this.state.results}                                
+                                handleSaveSubmit={this.handleSaveSubmit}
+                                handleViewSubmit={this.handleViewSubmit}
+                            />
                         </div>
                     </div>
                 </div>
